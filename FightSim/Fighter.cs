@@ -30,7 +30,7 @@ namespace FightSim
 
         public bool isAlive()
         {
-            if(hp < 0)
+            if (hp <= 0)
             {
                 return false;
             }

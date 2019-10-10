@@ -43,32 +43,52 @@ namespace FightSim
 
             while (mustGoON == true)
             {
-                for (int i = 0; i < fighters.Length; i++)
-                {
-                    if (fighters[i].isAlive() == false)
-                    {
-                        mustGoON = false;
-                    }
-                }
-
                 
                 for (int i = 0; i < fighters.Length; i++)
                 {
-                    damageDone = fighters[i].Attack();
-                    Console.WriteLine(fighters[i].name + " did " + damageDone + " amount of damage!");
+                    if (mustGoON == true)
+                    {
+                        if (fighters[i].isAlive() == false)
+                        {
+                            mustGoON = false;
+                        }
+                    }
                     
-                    fighters[i + 1].Hurt(damageDone);
-                    currentDmg = fighters[i + 1].GetHP();
-                    Console.WriteLine(fighters[i+1] + " now has " + currentDmg + " hp!");
-
-                    Console.ReadLine();
                 }
 
+                if (mustGoON == true)
+                {
+                    damageDone = fighters[0].Attack();
+                    Console.WriteLine(fighters[0].name + " did " + damageDone + " amount of damage!");
+
+                    fighters[1].Hurt(damageDone);
+                    currentDmg = fighters[1].GetHP();
+                    Console.WriteLine(fighters[1].name + " now has " + currentDmg + " hp!");
+
+                    Console.ReadLine();
+
+                    if (fighters[1].isAlive() == true)
+                    {
+                        damageDone = fighters[1].Attack();
+                        Console.WriteLine(fighters[1].name + " did " + damageDone + " amount of damage!");
+                        fighters[0].Hurt(damageDone);
+
+
+                        currentDmg = fighters[0].GetHP();
+                        Console.WriteLine(fighters[0].name + " now has " + currentDmg + " hp!");
+
+                        Console.ReadLine();
+                    }
+
+                }
             }
 
             for (int i = 0; i< fighters.Length; i++)
             {
-
+                if (fighters[i].isAlive() == true)
+                {
+                    Console.WriteLine("Congratulations " + fighters[i].name + "! You Won!");
+                }
 
 
             }
