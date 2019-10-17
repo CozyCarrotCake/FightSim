@@ -10,19 +10,31 @@ namespace FightSim
     {
 
         int hp = 100;
+        
+
         public string name;
-        int dmg;
+        public int dmg;
+
+        static Random generator = new Random();
+
+        public Fighter()
+        {
 
 
 
-        public int Attack()
+
+        }
+
+
+
+        public virtual int Attack()
         {
             dmg = 50;
             return dmg;
         }
 
 
-        public void Hurt (int amount)
+        public virtual void Hurt (int amount)
         {
             hp -= amount;
             
